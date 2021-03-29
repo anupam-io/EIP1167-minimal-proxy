@@ -8,7 +8,6 @@
     "test": "npx truffle test"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.0.0",
-    "@optionality.io/clone-factory": "^0.2.1"
+    "@openzeppelin/contracts": "^4.0.0"
   }
 }

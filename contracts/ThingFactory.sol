@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-import "@optionality.io/clone-factory/contracts/CloneFactory.sol";
+import {Clones} from "@openzeppelin/contracts/proxy/Clones.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Thing.sol";
 
-contract ThingFactory is Ownable, CloneFactory {
+contract ThingFactory is Ownable {
     address public libraryAddress;
 
     address[] public things;
@@ -21,7 +21,7 @@ contract ThingFactory is Ownable, CloneFactory {
     // }
 
     function createThing(string memory _name, uint256 _value) public onlyOwner {
-        address clone = createClone(libraryAddress);
+        address clone = Clones.clone(libraryAddress);
         Thing(clone).init(_name, _value);
         things.push(clone);
         ThingCreated(clone);

@@ -1,15 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract Thing {
+import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
+
+contract Thing is Initializable{
     string public name;
     uint256 public value;
 
-    bool onlyOnce = false;
-
-    function init(string memory _name, uint256 _value) public {
-        require(!onlyOnce, "Can be called only once.");
-        onlyOnce = true;
+    function init(string memory _name, uint256 _value) public initializer {
         name = _name;
         value = _value;
     }
